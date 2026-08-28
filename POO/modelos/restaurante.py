@@ -2,19 +2,23 @@ class Restaurante:
     restaurantes = []
 
     def __init__(self, nome, categoria):
-        self.nome = nome
-        self.categoria = categoria
-        self.ativo = False
+        self._nome = nome.title()
+        self.categoria = categoria.title()
+        self._ativo = False
         Restaurante.restaurantes.append(self)
     
     def __str__(self):
-        return f'{self.nome} | {self.categoria}'
+        return f'{self._nome} | {self.categoria}'
 
     def listar_restaurantes():
+        print(f'{'Nome do restaurante'} | {'Categoria'} | {'Status'}')
         for restaurante in Restaurante.restaurantes:
-            print(f'{restaurante.nome} | {restaurante.categoria} | {restaurante.ativo}')
+            print(f'{restaurante._nome} | {restaurante.categoria} | {restaurante.ativo}')
         
+    @property
+    def ativo(self):
+        return 'verdadeiro' if self._ativo else 'false'
 
-restaurante_praca = Restaurante('Praça', 'Gourmet')
-restaurante_pizza = Restaurante('Pizza', 'Italiana')
+restaurante_praca = Restaurante('praça', 'gourmet')
+restaurante_pizza = Restaurante('pizza', 'italiana')
 Restaurante.listar_restaurantes()
